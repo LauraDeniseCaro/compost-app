@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Compost Bariloche</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div id="pantallaBloqueo" class="bloqueo-overlay">
+  <div class="bloqueo-caja">
+    <h3>Panel Protegido</h3>
+    <p style="color: #718096; font-size: 14px;">Ingresá la contraseña de administrador para continuar.</p>
+    <input type="password" id="claveAdmin" placeholder="••••••••" onkeypress="if(event.key === 'Enter') verificarClave()">
+    <button onclick="verificarClave()">Ingresar al Panel</button>
+  </div>
+</div>
+
+<div class="container">
+  <nav class="nav-menu">
+    <a href="admin.html" class="active">⚙️ Panel Admin</a>
+    <a href="index.html">🌱 Vista Vecinos</a>
+  </nav>
+
+  <h2>Panel de Control de Compost</h2>
+  
+  <div class="seccion">
+    <h3>Buscar Vecino Existente</h3>
+    <label for="busquedaDni">DNI del Vecino:</label>
+    <input type="text" id="busquedaDni" placeholder="Ej: 35123456">
+    <button onclick="buscarVecino()">Buscar Vecino</button>
+  </div>
+
+  <div class="seccion" id="resultadoVecino" style="display:none;">
+    <h3 id="nombreVecino"></h3>
+    <p id="barrioVecino"></p>
+    <label for="kilosEntrega">Kilos Recibidos:</label>
+    <input type="number" id="kilosEntrega" step="0.1" placeholder="Ej: 4.5">
+    <button onclick="cargarKilos()">Registrar Peso</button>
+  </div>
+
+  <div class="seccion formulario-registro">
+    <h3>Registrar Nuevo Vecino</h3>
+    <label for="regDni">DNI:</label>
+    <input type="text" id="regDni" placeholder="Ej: 35123456">
+    <label for="regNombre">Nombre Completo:</label>
+    <input type="text" id="regNombre" placeholder="Ej: María Gonzales">
+    <label for="regBarrio">Barrio:</label>
+    <input type="text" id="regBarrio" placeholder="Ej: Belgrano">
+    <button onclick="registrarVecino()" class="btn-registro">Dar de Alta Vecino</button>
+  </div>
+
+  <div class="seccion" style="text-align: center;">
+    <h3>Impacto Comunitario</h3>
+    <p style="font-size: 16px; margin: 0; color: #4a5568;">Total Evitado del Vertedero:</p>
+    <strong id="totalGlobal" class="total-kilos">0.0 kg</strong>
+    <button onclick="exportarExcel()" class="btn-excel">Descargar Reporte Excel (.csv)</button>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
